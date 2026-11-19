@@ -1,7 +1,7 @@
 // Service Worker — Diario di Sostegno
 // Gestisce la cache per il funzionamento offline
 
-const CACHE = 'diario-v2';
+const CACHE = 'diario-v3';
 
 // Calcola il percorso base automaticamente (funziona sia in locale che su GitHub Pages)
 const BASE = self.location.pathname.replace(/sw\.js$/, '');
