@@ -1,0 +1,30 @@
+{
+  "name": "Diario di Sostegno",
+  "short_name": "Diario",
+  "description": "App per insegnanti di sostegno",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#FAFAF8",
+  "theme_color": "#6B8F71",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

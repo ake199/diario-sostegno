@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Genera icone — Diario di Sostegno</title>
+  <style>
+    body { font-family: system-ui; padding: 24px; background: #f5f5f5; }
+    h1 { font-size: 20px; margin-bottom: 16px; }
+    p  { margin-bottom: 16px; color: #555; line-height: 1.5; }
+    button { padding: 12px 24px; background: #6B8F71; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; margin-right: 8px; }
+    canvas { display: none; }
+    .done { color: #27AE60; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>🎨 Genera le icone PNG</h1>
+  <p>Questo file crea le icone PNG necessarie per l'app su iPhone.<br>
+     Apri questo file nel tuo browser, clicca il pulsante, e si scaricheranno automaticamente due file PNG.<br>
+     Copiare quei file nella cartella <code>icons/</code> del progetto.</p>
+
+  <button onclick="generateAll()">⬇️ Genera e scarica le icone</button>
+  <p id="status"></p>
+
+  <canvas id="c192" width="192" height="192"></canvas>
+  <canvas id="c512" width="512" height="512"></canvas>
+  <canvas id="c180" width="180" height="180"></canvas>
+
+  <script>
+    function drawIcon(canvas) {
+      const s = canvas.width;
+      const ctx = canvas.getContext('2d');
+      const r = s * 0.215;
+
+      // Sfondo arrotondato
+      ctx.beginPath();
+      ctx.moveTo(r, 0);
+      ctx.lineTo(s - r, 0);
+      ctx.quadraticCurveTo(s, 0, s, r);
+      ctx.lineTo(s, s - r);
+      ctx.quadraticCurveTo(s, s, s - r, s);
+      ctx.lineTo(r, s);
+      ctx.quadraticCurveTo(0, s, 0, s - r);
+      ctx.lineTo(0, r);
+      ctx.quadraticCurveTo(0, 0, r, 0);
+      ctx.closePath();
+      ctx.fillStyle = '#6B8F71';
+      ctx.fill();
+
+      // Libro bianco
+      const bx = s * 0.266, by = s * 0.188, bw = s * 0.469, bh = s * 0.586;
+      ctx.fillStyle = 'rgba(255,255,255,0.95)';
+      _roundRect(ctx, bx, by, bw, bh, s * 0.039);
+      ctx.fill();
+
+      // Costola
+      ctx.fillStyle = '#A8C5AE';
+      _roundRect(ctx, bx, by, s * 0.07, bh, s * 0.02);
+      ctx.fill();
+
+      // Righe
+      ctx.fillStyle = 'rgba(107,143,113,0.5)';
+      const lx = bx + s * 0.125, lw = bw - s * 0.164;
+      const rows = [0.305, 0.371, 0.437, 0.503, 0.57];
+      rows.forEach((y, i) => {
+        _roundRect(ctx, lx, s * y, i === 2 || i === 4 ? lw * 0.83 : lw, s * 0.027, s * 0.013);
+        ctx.fill();
+      });
+    }
+
+    function _roundRect(ctx, x, y, w, h, r) {
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.lineTo(x + w - r, y);
+      ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+      ctx.lineTo(x + w, y + h - r);
+      ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+      ctx.lineTo(x + r, y + h);
+      ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+      ctx.lineTo(x, y + r);
+      ctx.quadraticCurveTo(x, y, x + r, y);
+      ctx.closePath();
+    }
+
+    function download(canvas, name) {
+      const a = document.createElement('a');
+      a.href = canvas.toDataURL('image/png');
+      a.download = name;
+      a.click();
+    }
+
+    function generateAll() {
+      ['c192', 'c512', 'c180'].forEach(id => drawIcon(document.getElementById(id)));
+      setTimeout(() => download(document.getElementById('c192'), 'icon-192.png'), 100);
+      setTimeout(() => download(document.getElementById('c512'), 'icon-512.png'), 400);
+      setTimeout(() => download(document.getElementById('c180'), 'icon-180.png'), 700);
+      document.getElementById('status').innerHTML =
+        '<span class="done">✅ Scaricati! Copia icon-192.png, icon-512.png e icon-180.png nella cartella icons/</span>';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Sfondo verde salvia arrotondato -->
+  <rect width="512" height="512" rx="110" fill="#6B8F71"/>
+  <!-- Libro / quaderno -->
+  <rect x="136" y="96" width="240" height="300" rx="20" fill="white" opacity="0.95"/>
+  <!-- Costola del quaderno -->
+  <rect x="136" y="96" width="36" height="300" rx="10" fill="#A8C5AE"/>
+  <!-- Righe del testo -->
+  <rect x="200" y="156" width="144" height="14" rx="7" fill="#6B8F71" opacity="0.5"/>
+  <rect x="200" y="190" width="144" height="14" rx="7" fill="#6B8F71" opacity="0.5"/>
+  <rect x="200" y="224" width="120" height="14" rx="7" fill="#6B8F71" opacity="0.5"/>
+  <rect x="200" y="258" width="144" height="14" rx="7" fill="#6B8F71" opacity="0.5"/>
+  <rect x="200" y="292" width="96" height="14" rx="7" fill="#6B8F71" opacity="0.5"/>
+  <!-- Piccola coccarda/cerchio in basso -->
+  <circle cx="256" cy="358" r="20" fill="#6B8F71" opacity="0.3"/>
+</svg>

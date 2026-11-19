@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Diario di Sostegno</title>
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#6B8F71">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Diario">
+  <link rel="apple-touch-icon" href="icons/icon-180.png">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===== SCHERMATA CREAZIONE PIN (primo avvio) ===== -->
+  <div id="pin-setup-overlay" class="pin-overlay hidden">
+    <div class="pin-box">
+      <div class="pin-logo">📒</div>
+      <h1 class="pin-title">Diario di Sostegno</h1>
+      <p id="setup-subtitle" class="pin-subtitle">Scegli un PIN di 4 cifre</p>
+      <div class="pin-dots" id="setup-dots">
+        <span class="pin-dot" id="setup-dot-0"></span>
+        <span class="pin-dot" id="setup-dot-1"></span>
+        <span class="pin-dot" id="setup-dot-2"></span>
+        <span class="pin-dot" id="setup-dot-3"></span>
+      </div>
+      <div id="setup-error" class="pin-error hidden"></div>
+      <div class="pin-pad" id="setup-pad">
+        <button class="pin-key" data-digit="1">1</button>
+        <button class="pin-key" data-digit="2">2</button>
+        <button class="pin-key" data-digit="3">3</button>
+        <button class="pin-key" data-digit="4">4</button>
+        <button class="pin-key" data-digit="5">5</button>
+        <button class="pin-key" data-digit="6">6</button>
+        <button class="pin-key" data-digit="7">7</button>
+        <button class="pin-key" data-digit="8">8</button>
+        <button class="pin-key" data-digit="9">9</button>
+        <span class="pin-key pin-key--empty"></span>
+        <button class="pin-key" data-digit="0">0</button>
+        <button class="pin-key pin-key--del" id="setup-del">⌫</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SCHERMATA INSERIMENTO PIN ===== -->
+  <div id="pin-overlay" class="pin-overlay hidden">
+    <div class="pin-box">
+      <div class="pin-logo">🔒</div>
+      <h1 class="pin-title">Diario di Sostegno</h1>
+      <p id="pin-subtitle" class="pin-subtitle">Inserisci il PIN</p>
+      <div class="pin-dots">
+        <span class="pin-dot" id="pin-dot-0"></span>
+        <span class="pin-dot" id="pin-dot-1"></span>
+        <span class="pin-dot" id="pin-dot-2"></span>
+        <span class="pin-dot" id="pin-dot-3"></span>
+      </div>
+      <div id="pin-error" class="pin-error hidden"></div>
+      <div class="pin-pad" id="pin-pad">
+        <button class="pin-key" data-digit="1">1</button>
+        <button class="pin-key" data-digit="2">2</button>
+        <button class="pin-key" data-digit="3">3</button>
+        <button class="pin-key" data-digit="4">4</button>
+        <button class="pin-key" data-digit="5">5</button>
+        <button class="pin-key" data-digit="6">6</button>
+        <button class="pin-key" data-digit="7">7</button>
+        <button class="pin-key" data-digit="8">8</button>
+        <button class="pin-key" data-digit="9">9</button>
+        <span class="pin-key pin-key--empty"></span>
+        <button class="pin-key" data-digit="0">0</button>
+        <button class="pin-key pin-key--del" id="pin-del">⌫</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== APP PRINCIPALE ===== -->
+  <div id="app" class="app hidden">
+
+    <!-- Stack schermate secondarie (slideIn da destra) -->
+    <div id="screen-stack"></div>
+
+    <!-- Contenuto tab -->
+    <main id="main-content">
+      <section id="tab-home"         class="tab-content active"></section>
+      <section id="tab-studenti"     class="tab-content"></section>
+      <section id="tab-timeline"     class="tab-content"></section>
+      <section id="tab-statistiche"  class="tab-content"></section>
+      <section id="tab-impostazioni" class="tab-content"></section>
+    </main>
+
+    <!-- Navigazione inferiore -->
+    <nav class="bottom-nav">
+      <button class="nav-btn active" data-tab="home">
+        <span class="nav-icon">🏠</span>
+        <span class="nav-label">Home</span>
+      </button>
+      <button class="nav-btn" data-tab="studenti">
+        <span class="nav-icon">👤</span>
+        <span class="nav-label">Studenti</span>
+      </button>
+      <button class="nav-btn" data-tab="timeline">
+        <span class="nav-icon">📋</span>
+        <span class="nav-label">Timeline</span>
+      </button>
+      <button class="nav-btn" data-tab="statistiche">
+        <span class="nav-icon">📊</span>
+        <span class="nav-label">Statistiche</span>
+      </button>
+      <button class="nav-btn" data-tab="impostazioni">
+        <span class="nav-icon">⚙️</span>
+        <span class="nav-label">Impostazioni</span>
+      </button>
+    </nav>
+
+  </div>
+
+  <!-- Script in ordine di dipendenza -->
+  <script src="js/db.js"></script>
+  <script src="js/pin.js"></script>
+  <script src="js/home.js"></script>
+  <script src="js/students.js"></script>
+  <script src="js/notes.js"></script>
+  <script src="js/timeline.js"></script>
+  <script src="js/stats.js"></script>
+  <script src="js/deadlines.js"></script>
+  <script src="js/settings.js"></script>
+  <script src="js/synthesis.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

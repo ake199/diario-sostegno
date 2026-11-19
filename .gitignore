@@ -1,0 +1,10 @@
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+
+# Nessun dato personale va su GitHub — i dati restano solo sul telefono (IndexedDB)
