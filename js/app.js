@@ -48,6 +48,11 @@ async function _initDefaultSettings() {
     ]);
   }
 
+  // Data di installazione (per il promemoria backup)
+  if (await Settings.get('install_date') === undefined) {
+    await Settings.set('install_date', Date.now());
+  }
+
   // Date quadrimestri (calcola l'anno scolastico corrente)
   if (await Settings.get('q1_start') === undefined) {
     const now  = new Date();
