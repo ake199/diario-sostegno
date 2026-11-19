@@ -97,12 +97,16 @@ async function _renderNotesList() {
   }
 
   notesEl.innerHTML = `
-    <div class="settings-section-title" style="padding-top:4px">
-      ${observations.length} osservazion${observations.length === 1 ? 'e' : 'i'} · ${_tlEsc(student.pseudonym)}
+    <div class="settings-section-title" style="padding-top:4px;display:flex;align-items:center;justify-content:space-between;padding-right:var(--sp-md)">
+      <span>${observations.length} osservazion${observations.length === 1 ? 'e' : 'i'} · ${_tlEsc(student.pseudonym)}</span>
+      <button id="tl-syn-btn" style="font-size:12px;font-weight:600;color:var(--accent);background:none;border:none;cursor:pointer;padding:4px 0;white-space:nowrap">✂️ Sintesi</button>
     </div>
     <div style="padding:4px var(--sp-md) var(--sp-lg);display:flex;flex-direction:column;gap:12px">
       ${observations.map(obs => _buildNoteCard(obs)).join('')}
     </div>`;
+
+  const synBtn = document.getElementById('tl-syn-btn');
+  if (synBtn) synBtn.addEventListener('click', () => openSynthesisScreen(student.id));
 
   notesEl.querySelectorAll('[data-edit-obs]').forEach(btn => {
     btn.addEventListener('click', async () => {
