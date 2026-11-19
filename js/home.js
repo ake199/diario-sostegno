@@ -65,7 +65,10 @@ async function renderHome() {
       </div>` : ''}
 
     ${upcoming.length > 0 ? `
-      <div class="section-label">Scadenze in arrivo</div>
+      <div class="section-label" style="display:flex;align-items:center;justify-content:space-between;padding-right:var(--sp-md)">
+        <span>Scadenze in arrivo</span>
+        <button id="manage-dl-btn" style="font-size:12px;font-weight:600;color:var(--accent);background:none;border:none;cursor:pointer;padding:4px 0">Gestisci →</button>
+      </div>
       <div style="padding:0 var(--sp-md);display:flex;flex-direction:column;gap:8px;margin-bottom:4px">
         ${upcoming.map(d => {
           const dt = new Date(d.date + 'T00:00:00');
@@ -86,7 +89,12 @@ async function renderHome() {
               </div>
             </div>`;
         }).join('')}
-      </div>` : ''}
+      </div>` : `
+      <div style="padding:0 var(--sp-md) 4px">
+        <button id="manage-dl-btn" class="btn btn--secondary btn--sm" style="width:auto;font-size:13px">
+          📅 Gestisci scadenze GLO / PEI
+        </button>
+      </div>`}
 
     ${students.length === 0 ? `
       <div class="empty-state">
@@ -108,6 +116,10 @@ async function renderHome() {
   // Vai a studenti (stato vuoto)
   const gotoBtn = document.getElementById('go-to-students');
   if (gotoBtn) gotoBtn.addEventListener('click', () => navigateTo('studenti'));
+
+  // Apri schermata scadenze
+  const manageDlBtn = document.getElementById('manage-dl-btn');
+  if (manageDlBtn) manageDlBtn.addEventListener('click', () => openDeadlinesScreen());
 
   // Click sui tile → schermata nota rapida
   el.querySelectorAll('.student-tile').forEach(tile => {
